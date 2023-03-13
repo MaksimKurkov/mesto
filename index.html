@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Место</title>
+    <link rel="stylesheet" href="pages/index.css">
+</head>
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="images/logo.svg" alt="Логотип Место">
+    </header>
+    <main class="content">
+        <!-- Профиль -->
+        <section class="profile">
+            <div class="profile__persona">
+                <img class="profile__avatar" src="images/image.jpg" alt="Аватарка">
+                <div class="profile__info">
+                    <p class="profile__name">Жак-Ив Кусто</p>
+                    <button class="profile__editButton">
+                    </button>
+                    <p class="profile__status">Исследователь океана</p>
+                </div>
+            </div>
+            <button class="addButton">
+            </button>
+        </section>
+        <!-- Грид карточек мест -->
+        <section class="elements">
+            <div class="element">
+                <img class="element__photo" src="images/Kamchatka.jpg" alt="Камчатский вулкан">
+                <div class="element__info">
+                    <p class="element__name">Камчатка</p>
+                    <button class="element__like">
+                    </button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__photo" src="images/Kavkaz.jpg" alt="Кавказские горы">
+                <div class="element__info">
+                    <p class="element__name">Кавказ</p>
+                    <button class="element__like">
+                    </button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__photo" src="images/Ural.jpg" alt="Уральский хребет">
+                <div class="element__info">
+                    <p class="element__name">Урал</p>
+                    <button class="element__like">
+                    </button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__photo" src="images/Baikal.jpg" alt="Озеро Байкал">
+                <div class="element__info">
+                    <p class="element__name">Байкал</p>
+                    <button class="element__like">
+                    </button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__photo" src="images/Altai.jpg" alt="Алтайские горы">
+                <div class="element__info">
+                    <p class="element__name">Алтай</p>
+                    <button class="element__like">
+                    </button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__photo" src="images/Karelia.jpg" alt="Карельские озера">
+                <div class="element__info">
+                    <p class="element__name">Карелия</p>
+                    <button class="element__like">
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__text">© 2020 Mesto Russia</p>
+    </footer>
+    <!-- Блок Popup -->
+    <section class="popup">
+        <div class="popup__container">
+            <h1 class="popup__titul">Редактировать профиль</h1>
+            <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
+            <input type="text" placeholder="О себе" class="popup__input popup__input_type_status">
+            <button class="popup__save">Сохранить</button>
+            <button class="popup__exit"></button>
+        </div>
+    </section>
+    <script src="scripts/index.js"></script>
+</body>
+</html>
