@@ -6,6 +6,7 @@
     margin: 0px;
     background-image: url(../../../images/Like.svg);
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
     .element__like:hover {
