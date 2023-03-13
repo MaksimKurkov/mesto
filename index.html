@@ -17,7 +17,7 @@
                 <img class="profile__avatar" src="images/Avatar.jpg" alt="Аватарка">
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button">
+                    <button class="profile__edit-button" type="button">
                     </button>
                     <p class="profile__status">Исследователь океана</p>
                 </div>
@@ -31,7 +31,7 @@
                 <img class="element__photo" src="images/Kamchatka.jpg" alt="Камчатский вулкан">
                 <div class="element__info">
                     <h2 class="element__name">Камчатка</h2>
-                    <button class="element__like">
+                    <button class="element__like" type="button">
                     </button>
                 </div>
             </article>
@@ -39,7 +39,7 @@
                 <img class="element__photo" src="images/Kavkaz.jpg" alt="Кавказские горы">
                 <div class="element__info">
                     <h2 class="element__name">Кавказ</h2>
-                    <button class="element__like">
+                    <button class="element__like" type="button">
                     </button>
                 </div>
             </article>
@@ -47,7 +47,7 @@
                 <img class="element__photo" src="images/Ural.jpg" alt="Уральский хребет">
                 <div class="element__info">
                     <h2 class="element__name">Урал</h2>
-                    <button class="element__like">
+                    <button class="element__like" type="button">
                     </button>
                 </div>
             </article>
@@ -55,7 +55,7 @@
                 <img class="element__photo" src="images/Baikal.jpg" alt="Озеро Байкал">
                 <div class="element__info">
                     <h2 class="element__name">Байкал</h2>
-                    <button class="element__like">
+                    <button class="element__like" type="button">
                     </button>
                 </div>
             </article>
@@ -63,7 +63,7 @@
                 <img class="element__photo" src="images/Altai.jpg" alt="Алтайские горы">
                 <div class="element__info">
                     <h2 class="element__name">Алтай</h2>
-                    <button class="element__like">
+                    <button class="element__like" type="button">
                     </button>
                 </div>
             </article>
@@ -71,7 +71,7 @@
                 <img class="element__photo" src="images/Karelia.jpg" alt="Карельские озера">
                 <div class="element__info">
                     <h2 class="element__name">Карелия</h2>
-                    <button class="element__like">
+                    <button class="element__like" type="button">
                     </button>
                 </div>
             </article>
@@ -81,15 +81,17 @@
         <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
     <!-- Блок Popup -->
-    <section class="popup">
+    <div class="popup">
         <div class="popup__container">
             <h2 class="popup__titul">Редактировать профиль</h2>
-            <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
-            <input type="text" placeholder="О себе" class="popup__input popup__input_type_status">
-            <button class="popup__save">Сохранить</button>
-            <button class="popup__exit"></button>
+            <form class="popup__form" name="popup-form">
+                <input type="text" placeholder="Имя" class="popup__input" name="popup__input_type_name">
+                <input type="text" placeholder="О себе" class="popup__input" name="popup__input_type_status">
+                <button class="popup__save" type="submit">Сохранить</button>
+            </form>            
+            <button class="popup__exit" type="button"></button>
         </div>
-    </section>
+    </div>
     <script src="scripts/index.js"></script>
 </body>
 </html>

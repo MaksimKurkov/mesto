@@ -1,14 +1,14 @@
 /////Скрипты лайка/////
 
-const LikeButton = document.getElementsByClassName('element__like')
+/*const LikeButton = document.getElementsByClassName('element__like')
 
-for (var i = 0; i < LikeButton.length; i++) {
+/*for (var i = 0; i < LikeButton.length; i++) {
     LikeButton[i].addEventListener('click', LikeChek);
 }
 
 function LikeChek() {
     this.classList.toggle('element__like_active');
-}
+}*/
 
 /////Скрипты Popup/////
 
