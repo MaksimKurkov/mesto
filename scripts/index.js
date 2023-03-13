@@ -14,7 +14,7 @@ function LikeChek() {
 
 const popupElement = document.querySelector(".popup");
 const popupCloseButtonElement = popupElement.querySelector(".popup__exit");
-const popupOpenButtonElement = document.querySelector(".profile__editButton");
+const popupOpenButtonElement = document.querySelector(".profile__edit-button");
 
 function popupActive() {
     popupElement.classList.add('popup_opened');
