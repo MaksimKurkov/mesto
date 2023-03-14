@@ -1,4 +1,4 @@
-/////Скрипты лайка/////
+/////Like's scripts/////
 
 /*const LikeButton = document.getElementsByClassName('element__like')
 
@@ -10,7 +10,7 @@ function LikeChek() {
     this.classList.toggle('element__like_active');
 }*/
 
-/////Скрипты Popup/////
+/////Popup's scripts /////
 
 const popupElement = document.querySelector(".popup");
 const popupOpenButtonElement = document.querySelector(".profile__edit-button");
