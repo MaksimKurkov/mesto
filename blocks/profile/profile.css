@@ -11,5 +11,6 @@
     .profile {
         flex-direction: column;
         justify-content: start;
+        padding-bottom: 35px;
     }
 }

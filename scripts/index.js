@@ -13,36 +13,36 @@ function LikeChek() {
 /////Скрипты Popup/////
 
 const popupElement = document.querySelector(".popup");
-const popupCloseButtonElement = popupElement.querySelector(".popup__exit");
 const popupOpenButtonElement = document.querySelector(".profile__edit-button");
+const popupCloseButtonElement = popupElement.querySelector(".popup__exit");
+
+let popupFormElement = document.querySelector(".popup__form");
+
+let profileName = document.querySelector('.profile__name');
+let profileStatus = document.querySelector('.profile__status');
+let popupNameInput = popupFormElement.querySelector('.popup__input_type_name');
+let popupStatusInput = popupFormElement.querySelector('.popup__input_type_status');
 
 function popupActive() {
     popupElement.classList.add('popup_opened');
+    popupNameInput.value = profileName.textContent;
+    popupStatusInput.value = profileStatus.textContent;
 }
+
+popupOpenButtonElement.addEventListener('click', popupActive);
 
 function popupClose() {
     popupElement.classList.remove('popup_opened');
 }
 
-popupOpenButtonElement.addEventListener('click', popupActive);
 popupCloseButtonElement.addEventListener('click', popupClose);
 
-/////Скрипты данных/////
+function popupFormSubmit(evt) {
+    evt.preventDefault();
+    profileName.textContent = popupNameInput.value;
+    profileStatus.textContent = popupStatusInput.value;
 
-let name = document.querySelector('.profile__name').innerHTML;
-let status = document.querySelector('.profile__status').innerHTML;
-let popupName = document.querySelector('.popup__input_type_name');
-let popupStatus = document.querySelector('.popup__input_type_status');
-
-popupName.value = name;
-popupStatus.value = status;
-
-const popupSaveButtonElement = popupElement.querySelector(".popup__save");
-
-function popupSave() {
-    document.querySelector('.profile__name').innerHTML = popupName.value;
-    document.querySelector('.profile__status').innerHTML = popupStatus.value;
-    popupElement.classList.remove('popup_opened');
+    popupClose()
 }
 
-popupSaveButtonElement.addEventListener('click', popupSave);
+popupFormElement.addEventListener('submit', popupFormSubmit)
