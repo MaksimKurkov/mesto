@@ -4,3 +4,9 @@
     align-items: stretch;
     padding-top: 48px;
 }
+
+@media (max-width: 725px) {
+    .popup__form {
+        padding-top: 75px;
+    }
+}
