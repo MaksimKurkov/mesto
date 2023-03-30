@@ -135,8 +135,8 @@ standartplaces.forEach(element => {
 
 /////Добавление карточки из попапа /////
 let popupPlaceFormElement = document.querySelector(".popup-place__form");
-let popupPlaceNameInput = popupPlaceFormElement.querySelector('.popup-place__input_type_place');
-let popupPlaceLinkInput = popupPlaceFormElement.querySelector('.popup-place__input_type_link');
+let popupPlaceNameInput = popupPlaceFormElement.querySelector('.popup__input_type_place');
+let popupPlaceLinkInput = popupPlaceFormElement.querySelector('.popup__input_type_link');
 
 //Добавление карточки//
 function addPlaceElement(evt) {
