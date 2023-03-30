@@ -18,18 +18,12 @@ const popupOpenButtonPlace = document.querySelector(".profile__add-button");
 const popupOpenButtonImage = document.querySelector(".element__photo");
 
 popupOpenButtonProfile.addEventListener('click', function() {
-  open(popupProfile);
+    open(popupProfile);
 })
 
 popupOpenButtonPlace.addEventListener('click', function() {
-  open(popupPlace);
+    open(popupPlace);
 })
-
-//popupOpenButtonImage.addEventListener('click', function() {
-//  open(popupImage);
-//})
-
-
 
 ///Кнопки закрытия Попапов///
 const popupCloseButtonProfile = document.querySelector(".popup-profile__exit");
@@ -104,8 +98,10 @@ const placeTemplate = document.querySelector('.element-template').content;
 //обработка карточки темплейта//
 function renderItem(item) {
     const placeElement = placeTemplate.querySelector('.element').cloneNode(true);
-    placeElement.querySelector('.element__name').textContent = item.name;
-    placeElement.querySelector('.element__photo').src = item.link;
+    const titulElement = placeElement.querySelector('.element__name');
+    titulElement.textContent = item.name;
+    const photoElement = placeElement.querySelector('.element__photo');
+    photoElement.src = item.link;
     const likeElement = placeElement.querySelector('.element__like');
     const trashElement = placeElement.querySelector('.element__trash');
 
@@ -118,7 +114,16 @@ function renderItem(item) {
     trashElement.addEventListener('click', () => {
         placeElement.remove();
     });
-     
+
+    //Открытие увеличенных изображений//
+    photoElement.addEventListener('click', () => {
+        open(popupImage);
+        const popupPlacePhoto = document.querySelector('.popup__photo');
+        const popupPlaceTitul = document.querySelector('.popup__titul_image');
+        popupPlacePhoto.src = photoElement.src;
+        popupPlaceTitul.textContent = titulElement.textContent;
+    });
+    
     return placeElement;
 };
 
@@ -148,4 +153,3 @@ function addPlaceElement(evt) {
 
 popupPlaceFormElement.addEventListener('submit', addPlaceElement);
 
-//Попап увеличенной картинки//
