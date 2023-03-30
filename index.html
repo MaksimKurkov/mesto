@@ -25,56 +25,9 @@
             <button class="profile__add-button" type="button">
             </button>
         </section>
-        <!-- Грид карточек мест -->
-        <section class="elements">
-            <article class="element">
-                <img class="element__photo" src="images/Kamchatka.jpg" alt="Камчатский вулкан">
-                <div class="element__info">
-                    <h2 class="element__name">Камчатка</h2>
-                    <button class="element__like" type="button">
-                    </button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__photo" src="images/Kavkaz.jpg" alt="Кавказские горы">
-                <div class="element__info">
-                    <h2 class="element__name">Кавказ</h2>
-                    <button class="element__like" type="button">
-                    </button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__photo" src="images/Ural.jpg" alt="Уральский хребет">
-                <div class="element__info">
-                    <h2 class="element__name">Урал</h2>
-                    <button class="element__like" type="button">
-                    </button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__photo" src="images/Baikal.jpg" alt="Озеро Байкал">
-                <div class="element__info">
-                    <h2 class="element__name">Байкал</h2>
-                    <button class="element__like" type="button">
-                    </button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__photo" src="images/Altai.jpg" alt="Алтайские горы">
-                <div class="element__info">
-                    <h2 class="element__name">Алтай</h2>
-                    <button class="element__like" type="button">
-                    </button>
-                </div>
-            </article>
-            <article class="element">
-                <img class="element__photo" src="images/Karelia.jpg" alt="Карельские озера">
-                <div class="element__info">
-                    <h2 class="element__name">Карелия</h2>
-                    <button class="element__like" type="button">
-                    </button>
-                </div>
-            </article>
+        <!-- Грид карточек мест -->        
+        <section class="elements place-container">
+
         </section>
     </main>
     <footer class="footer">
@@ -88,10 +41,33 @@
                 <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" name="nameInput">
                 <input type="text" placeholder="О себе" class="popup__input popup__input_type_status" name="statusInput">
                 <button class="popup__save" type="submit">Сохранить</button>
-            </form>            
+            </form>
             <button class="popup__exit" type="button"></button>
         </div>
     </div>
+    <!-- Блок Popup -->
+    <div class="popup-place">
+        <div class="popup-place__container">
+            <h2 class="popup-place__titul">Новое место</h2>
+            <form class="popup-place__form" name="popupPlaceForm">
+                <input type="text" placeholder="Название" class="popup-place__input popup-place__input_type_place" name="placeInput">
+                <input type="text" placeholder="Ссылка на картинку" class="popup-place__input popup-place__input_type_link" name="linkInput">
+                <button class="popup-place__save" type="submit">Создать</button>
+            </form>
+            <button class="popup-place__exit" type="button"></button>
+        </div>
+    </div>
+    <template class="element-template">
+        <article class="element">
+            <img class="element__photo" src="" alt="">
+            <div class="element__info">
+                <h2 class="element__name"></h2>
+                <button class="element__like" type="button">
+                </button>
+            </div>
+            <button class="element__trash" type="button"></button>
+        </article>
+    </template>
     <script src="scripts/index.js"></script>
 </body>
 </html>
