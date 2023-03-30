@@ -1,40 +1,74 @@
+///Попапы///
+const popupProfile = document.querySelector(".popup-profile");
+const popupPlace = document.querySelector(".popup-place");
+const popupImage = document.querySelector(".popup-image");
+
+///Открытие и закрытие попапов///
+const open = function (popup) {
+  popup.classList.add('popup_opened');
+}
+
+const close = function (popup) {
+  popup.classList.remove('popup_opened');
+}
+
+///Кнопки окрытия Попапов///
+const popupOpenButtonProfile = document.querySelector(".profile__edit-button");
+const popupOpenButtonPlace = document.querySelector(".profile__add-button");
+const popupOpenButtonImage = document.querySelector(".element__photo");
+
+popupOpenButtonProfile.addEventListener('click', function() {
+  open(popupProfile);
+})
+
+popupOpenButtonPlace.addEventListener('click', function() {
+  open(popupPlace);
+})
+
+//popupOpenButtonImage.addEventListener('click', function() {
+//  open(popupImage);
+//})
+
+
+
+///Кнопки закрытия Попапов///
+const popupCloseButtonProfile = document.querySelector(".popup-profile__exit");
+const popupCloseButtonPlace = document.querySelector(".popup-place__exit");
+const popupCloseButtonImage = document.querySelector(".popup-image__exit");
+
+popupCloseButtonProfile.addEventListener('click', function() {
+    close(popupProfile);
+    popupNameInput.value = profileName.textContent;
+    popupStatusInput.value = profileStatus.textContent;
+})
+
+popupCloseButtonPlace.addEventListener('click', function() {
+  close(popupPlace);
+})
+
+popupCloseButtonImage.addEventListener('click', function() {
+  close(popupImage);
+})
+
 /////Попап ппрофиля /////
-
-const popupElement = document.querySelector(".popup");
-const popupOpenButtonElement = document.querySelector(".profile__edit-button");
-const popupCloseButtonElement = popupElement.querySelector(".popup__exit");
-
-let popupFormElement = document.querySelector(".popup__form");
+let popupFormProfile = document.querySelector(".popup-profile__form");
 
 let profileName = document.querySelector('.profile__name');
 let profileStatus = document.querySelector('.profile__status');
-let popupNameInput = popupFormElement.querySelector('.popup__input_type_name');
-let popupStatusInput = popupFormElement.querySelector('.popup__input_type_status');
+let popupNameInput = popupFormProfile.querySelector('.popup__input_type_name');
+let popupStatusInput = popupFormProfile.querySelector('.popup__input_type_status');
 
-function popupActive() {
-    popupElement.classList.add('popup_opened');
-    popupNameInput.value = profileName.textContent;
-    popupStatusInput.value = profileStatus.textContent;
-}
+popupNameInput.value = profileName.textContent;
+popupStatusInput.value = profileStatus.textContent;
 
-popupOpenButtonElement.addEventListener('click', popupActive);
-
-function popupClose() {
-    popupElement.classList.remove('popup_opened');
-}
-
-popupCloseButtonElement.addEventListener('click', popupClose);
-
-function popupFormSubmit(evt) {
+function profileIdit(evt){
     evt.preventDefault();
     profileName.textContent = popupNameInput.value;
     profileStatus.textContent = popupStatusInput.value;
-
-    popupClose();
+    close(popupProfile);
 }
 
-popupFormElement.addEventListener('submit', popupFormSubmit);
-
+popupFormProfile.addEventListener('submit', profileIdit);
 
 //Инициализация стандартного массива//
 const standartplaces = [
@@ -74,7 +108,6 @@ function renderItem(item) {
     placeElement.querySelector('.element__photo').src = item.link;
     const likeElement = placeElement.querySelector('.element__like');
     const trashElement = placeElement.querySelector('.element__trash');
-    
 
     //кнопка лайка//
     likeElement.addEventListener('click', () => {
@@ -85,9 +118,7 @@ function renderItem(item) {
     trashElement.addEventListener('click', () => {
         placeElement.remove();
     });
-    
-
-    
+     
     return placeElement;
 };
 
@@ -98,42 +129,19 @@ standartplaces.forEach(element => {
 });
 
 /////Добавление карточки из попапа /////
-
-const popupPlaceElement = document.querySelector(".popup-place");
-const popupPlaceOpenButtonElement = document.querySelector(".profile__add-button");
-const popupPlaceCloseButtonElement = popupPlaceElement.querySelector(".popup-place__exit");
-
-
 let popupPlaceFormElement = document.querySelector(".popup-place__form");
-
 let popupPlaceNameInput = popupPlaceFormElement.querySelector('.popup-place__input_type_place');
 let popupPlaceLinkInput = popupPlaceFormElement.querySelector('.popup-place__input_type_link');
 
-
-function popupPlaceActive() {
-    popupPlaceElement.classList.add('popup-place_opened');
-}
-
-popupPlaceOpenButtonElement.addEventListener('click', popupPlaceActive);
-
-function popupPlaceClose() {
-    popupPlaceElement.classList.remove('popup-place_opened');
-}
-
-popupPlaceCloseButtonElement.addEventListener('click', popupPlaceClose);
-
 //Добавление карточки//
-
 function addPlaceElement(evt) {
     evt.preventDefault();
-
     const addPlace = renderItem({
         name: popupPlaceNameInput.value,
         link: popupPlaceLinkInput.value
     })
-    console.log(addPlace);
     placeContainer.prepend(addPlace);
-    popupPlaceClose();
+    close(popupPlace);
     popupPlaceNameInput.value = '';
     popupPlaceLinkInput.value = '';
 }
@@ -141,5 +149,3 @@ function addPlaceElement(evt) {
 popupPlaceFormElement.addEventListener('submit', addPlaceElement);
 
 //Попап увеличенной картинки//
-
-
