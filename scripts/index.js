@@ -69,7 +69,7 @@ const placeTemplate = document.querySelector('.element-template').content;
 
 //обработка карточки темплейта//
 function renderItem(item) {
-    const placeElement = placeTemplate.cloneNode(true);
+    const placeElement = placeTemplate.querySelector('.element').cloneNode(true);
     placeElement.querySelector('.element__name').textContent = item.name;
     placeElement.querySelector('.element__photo').src = item.link;
     const likeElement = placeElement.querySelector('.element__like');
