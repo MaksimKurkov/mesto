@@ -119,7 +119,7 @@ function renderItem(item) {
     photoElement.addEventListener('click', () => {
         open(popupImage);
         const popupPlacePhoto = document.querySelector('.popup__photo');
-        const popupPlaceTitul = document.querySelector('.popup__titul_image');
+        const popupPlaceTitul = document.querySelector('.popup__place');
         popupPlacePhoto.src = photoElement.src;
         popupPlaceTitul.textContent = titulElement.textContent;
     });
