@@ -85,7 +85,9 @@ function renderItem(item) {
     trashElement.addEventListener('click', () => {
         placeElement.remove();
     });
+    
 
+    
     return placeElement;
 };
 
@@ -137,3 +139,7 @@ function addPlaceElement(evt) {
 }
 
 popupPlaceFormElement.addEventListener('submit', addPlaceElement);
+
+//Попап увеличенной картинки//
+
+
