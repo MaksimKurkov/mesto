@@ -1,14 +1,14 @@
 ///Попапы///
-const popupProfile = document.querySelector(".popup-profile");
-const popupPlace = document.querySelector(".popup-place");
-const popupImage = document.querySelector(".popup-image");
+const popupEditProfile = document.querySelector(".popup-profile");
+const popupAddPlace = document.querySelector(".popup-place");
+const popupExtendImage = document.querySelector(".popup-image");
 
 ///Открытие и закрытие попапов///
-const open = function (popup) {
+const openPopupElement = function (popup) {
   popup.classList.add('popup_opened');
 }
 
-const close = function (popup) {
+const closePopupElement = function (popup) {
   popup.classList.remove('popup_opened');
 }
 
@@ -18,11 +18,15 @@ const popupOpenButtonPlace = document.querySelector(".profile__add-button");
 const popupOpenButtonImage = document.querySelector(".element__photo");
 
 popupOpenButtonProfile.addEventListener('click', function() {
-    open(popupProfile);
+    openPopupElement(popupEditProfile);
+    popupInputName.value = profileName.textContent;
+    popupInputStatus.value = profileStatus.textContent;
 })
 
 popupOpenButtonPlace.addEventListener('click', function() {
-    open(popupPlace);
+    openPopupElement(popupAddPlace);
+    popupPlaceInputName.value = '';
+    popupPlaceInputLink.value = '';
 })
 
 ///Кнопки закрытия Попапов///
@@ -31,41 +35,36 @@ const popupCloseButtonPlace = document.querySelector(".popup-place__exit");
 const popupCloseButtonImage = document.querySelector(".popup-image__exit");
 
 popupCloseButtonProfile.addEventListener('click', function() {
-    close(popupProfile);
-    popupNameInput.value = profileName.textContent;
-    popupStatusInput.value = profileStatus.textContent;
+    closePopupElement(popupEditProfile);
 })
 
 popupCloseButtonPlace.addEventListener('click', function() {
-  close(popupPlace);
+    closePopupElement(popupAddPlace);
 })
 
 popupCloseButtonImage.addEventListener('click', function() {
-  close(popupImage);
+    closePopupElement(popupExtendImage);
 })
 
 /////Попап ппрофиля /////
-let popupFormProfile = document.querySelector(".popup-profile__form");
+const popupFormProfile = document.querySelector(".popup-profile__form");
 
-let profileName = document.querySelector('.profile__name');
-let profileStatus = document.querySelector('.profile__status');
-let popupNameInput = popupFormProfile.querySelector('.popup__input_type_name');
-let popupStatusInput = popupFormProfile.querySelector('.popup__input_type_status');
+const profileName = document.querySelector('.profile__name');
+const profileStatus = document.querySelector('.profile__status');
+const popupInputName = popupFormProfile.querySelector('.popup__input_type_name');
+const popupInputStatus = popupFormProfile.querySelector('.popup__input_type_status');
 
-popupNameInput.value = profileName.textContent;
-popupStatusInput.value = profileStatus.textContent;
-
-function profileIdit(evt){
+function submitEditProfileForm(evt){
     evt.preventDefault();
-    profileName.textContent = popupNameInput.value;
-    profileStatus.textContent = popupStatusInput.value;
-    close(popupProfile);
+    profileName.textContent = popupInputName.value;
+    profileStatus.textContent = popupInputStatus.value;
+    closePopupElement(popupEditProfile);
 }
 
-popupFormProfile.addEventListener('submit', profileIdit);
+popupFormProfile.addEventListener('submit', submitEditProfileForm);
 
 //Инициализация стандартного массива//
-const standartplaces = [
+const standartPlaces = [
     {
         name: 'Камчатка',
         link: 'https://images.unsplash.com/photo-1605653799416-595e2b020d08?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2067&q=80'
@@ -94,9 +93,11 @@ const standartplaces = [
 
 const placeContainer = document.querySelector('.place-container');
 const placeTemplate = document.querySelector('.element-template').content;
+const popupPlacePhoto = popupExtendImage.querySelector('.popup__photo');
+const popupPlaceTitul = popupExtendImage.querySelector('.popup__place');
 
 //обработка карточки темплейта//
-function renderItem(item) {
+function renderInitialCards(item) {
     const placeElement = placeTemplate.querySelector('.element').cloneNode(true);
     const titulElement = placeElement.querySelector('.element__name');
     titulElement.textContent = item.name;
@@ -104,6 +105,7 @@ function renderItem(item) {
     photoElement.src = item.link;
     const likeElement = placeElement.querySelector('.element__like');
     const trashElement = placeElement.querySelector('.element__trash');
+
 
     //кнопка лайка//
     likeElement.addEventListener('click', () => {
@@ -117,38 +119,36 @@ function renderItem(item) {
 
     //Открытие увеличенных изображений//
     photoElement.addEventListener('click', () => {
-        open(popupImage);
-        const popupPlacePhoto = document.querySelector('.popup__photo');
-        const popupPlaceTitul = document.querySelector('.popup__place');
+        openPopupElement(popupExtendImage);
         popupPlacePhoto.src = photoElement.src;
         popupPlaceTitul.textContent = titulElement.textContent;
+        popupPlacePhoto.alt = titulElement.textContent;
     });
     
     return placeElement;
 };
 
 //создание карточек для всех элементов//
-standartplaces.forEach(element => {
-    let newPlace = renderItem(element);
-    placeContainer.append(newPlace);
+standartPlaces.forEach(element => {
+    const standartPlace = renderInitialCards(element);
+    placeContainer.append(standartPlace);
 });
 
 /////Добавление карточки из попапа /////
-let popupPlaceFormElement = document.querySelector(".popup-place__form");
-let popupPlaceNameInput = popupPlaceFormElement.querySelector('.popup__input_type_place');
-let popupPlaceLinkInput = popupPlaceFormElement.querySelector('.popup__input_type_link');
+const popupPlaceFormElement = document.querySelector(".popup-place__form");
+const popupPlaceInputName = popupPlaceFormElement.querySelector('.popup__input_type_place');
+const popupPlaceInputLink = popupPlaceFormElement.querySelector('.popup__input_type_link');
 
 //Добавление карточки//
 function addPlaceElement(evt) {
     evt.preventDefault();
-    const addPlace = renderItem({
-        name: popupPlaceNameInput.value,
-        link: popupPlaceLinkInput.value
+    const newPlace = renderInitialCards({
+        name: popupPlaceInputName.value,
+        link: popupPlaceInputLink.value
     })
-    placeContainer.prepend(addPlace);
-    close(popupPlace);
-    popupPlaceNameInput.value = '';
-    popupPlaceLinkInput.value = '';
+    placeContainer.prepend(newPlace);
+    closePopupElement(popupAddPlace);
+    evt.target.reset();
 }
 
 popupPlaceFormElement.addEventListener('submit', addPlaceElement);
