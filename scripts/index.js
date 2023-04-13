@@ -2,14 +2,18 @@
 const popupEditProfile = document.querySelector(".popup-profile");
 const popupAddPlace = document.querySelector(".popup-place");
 const popupExtendImage = document.querySelector(".popup-image");
+const formEditProfile = document.querySelector(".popup-profile__form");
+const formAddPlace = document.querySelector(".popup-place__form");
 
 ///Открытие и закрытие попапов///
 const openPopupElement = function (popup) {
-  popup.classList.add('popup_opened');
+    popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupWithEsc);
 }
 
 const closePopupElement = function (popup) {
-  popup.classList.remove('popup_opened');
+    popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupWithEsc);
 }
 
 ///Кнопки окрытия Попапов///
@@ -18,15 +22,19 @@ const popupOpenButtonPlace = document.querySelector(".profile__add-button");
 const popupOpenButtonImage = document.querySelector(".element__photo");
 
 popupOpenButtonProfile.addEventListener('click', function() {
-    openPopupElement(popupEditProfile);
+    resetError(formEditProfile);
+    resetButton(formEditProfile);
     popupInputName.value = profileName.textContent;
     popupInputStatus.value = profileStatus.textContent;
+    openPopupElement(popupEditProfile);
 })
 
-popupOpenButtonPlace.addEventListener('click', function() {
-    openPopupElement(popupAddPlace);
+popupOpenButtonPlace.addEventListener('click', function () {  
+    resetError(formAddPlace);
+    resetButton(formAddPlace);
     popupPlaceInputName.value = '';
     popupPlaceInputLink.value = '';
+    openPopupElement(popupAddPlace);
 })
 
 ///Кнопки закрытия Попапов///
@@ -45,6 +53,31 @@ popupCloseButtonPlace.addEventListener('click', function() {
 popupCloseButtonImage.addEventListener('click', function() {
     closePopupElement(popupExtendImage);
 })
+
+const closePopupWithEsc = (evt) => {
+    if (evt.code == "Escape") {
+        const activePopup = document.querySelector('.popup_opened')
+        if (activePopup) {
+            closePopupElement(activePopup)
+        }
+    }
+};
+
+const closePopupByClickOverlay = () => {
+    const popups = Array.from(document.querySelectorAll('.popup'));
+    popups.forEach(popup => {
+        popup.addEventListener('click', evt => {
+            if (evt.target == evt.currentTarget) {
+                closePopupElement(popup)
+            };
+        });
+    });
+}
+
+closePopupByClickOverlay()
+
+
+
 
 /////Попап ппрофиля /////
 const popupFormProfile = document.querySelector(".popup-profile__form");
@@ -94,10 +127,10 @@ const standartPlaces = [
 const placeContainer = document.querySelector('.place-container');
 const placeTemplate = document.querySelector('.element-template').content;
 const popupPlacePhoto = popupExtendImage.querySelector('.popup__photo');
-const popupPlaceTitul = popupExtendImage.querySelector('.popup__place');
+const popupPlaceTitle = popupExtendImage.querySelector('.popup__place');
 
 //обработка карточки темплейта//
-function renderInitialCards(item) {
+function reateCard(item) {
     const placeElement = placeTemplate.querySelector('.element').cloneNode(true);
     const titulElement = placeElement.querySelector('.element__name');
     titulElement.textContent = item.name;
@@ -121,7 +154,7 @@ function renderInitialCards(item) {
     photoElement.addEventListener('click', () => {
         openPopupElement(popupExtendImage);
         popupPlacePhoto.src = photoElement.src;
-        popupPlaceTitul.textContent = titulElement.textContent;
+        popupPlaceTitle.textContent = titulElement.textContent;
         popupPlacePhoto.alt = titulElement.textContent;
     });
     
@@ -130,7 +163,7 @@ function renderInitialCards(item) {
 
 //создание карточек для всех элементов//
 standartPlaces.forEach(element => {
-    const standartPlace = renderInitialCards(element);
+    const standartPlace = reateCard(element);
     placeContainer.append(standartPlace);
 });
 
@@ -142,7 +175,7 @@ const popupPlaceInputLink = popupPlaceFormElement.querySelector('.popup__input_t
 //Добавление карточки//
 function addPlaceElement(evt) {
     evt.preventDefault();
-    const newPlace = renderInitialCards({
+    const newPlace = reateCard({
         name: popupPlaceInputName.value,
         link: popupPlaceInputLink.value
     })
