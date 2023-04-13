@@ -94,8 +94,8 @@ const resetError = (formElement) => {
 }
 
 const resetButton = (formElement) => {
-    const ButtonElement = formElement.querySelector(config.submitButton);
-    disableButtonSubmit(ButtonElement, config);
+    const buttonElement = formElement.querySelector(config.submitButton);
+    disableButtonSubmit(buttonElement, config);
 }
 
 

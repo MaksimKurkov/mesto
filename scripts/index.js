@@ -32,27 +32,17 @@ popupOpenButtonProfile.addEventListener('click', function() {
 popupOpenButtonPlace.addEventListener('click', function () {  
     resetError(formAddPlace);
     resetButton(formAddPlace);
-    popupPlaceInputName.value = '';
-    popupPlaceInputLink.value = '';
+    formAddPlace.reset();
     openPopupElement(popupAddPlace);
 })
 
 ///Кнопки закрытия Попапов///
-const popupCloseButtonProfile = document.querySelector(".popup-profile__exit");
-const popupCloseButtonPlace = document.querySelector(".popup-place__exit");
-const popupCloseButtonImage = document.querySelector(".popup-image__exit");
+const closeButtons = document.querySelectorAll('.popup__exit');
 
-popupCloseButtonProfile.addEventListener('click', function() {
-    closePopupElement(popupEditProfile);
-})
-
-popupCloseButtonPlace.addEventListener('click', function() {
-    closePopupElement(popupAddPlace);
-})
-
-popupCloseButtonImage.addEventListener('click', function() {
-    closePopupElement(popupExtendImage);
-})
+closeButtons.forEach((button) => {
+    const popup = button.closest('.popup');
+    button.addEventListener('click', () => closePopupElement(popup));
+});
 
 const closePopupWithEsc = (evt) => {
     if (evt.code == "Escape") {
@@ -77,8 +67,6 @@ const closePopupByClickOverlay = () => {
 closePopupByClickOverlay()
 
 
-
-
 /////Попап ппрофиля /////
 const popupFormProfile = document.querySelector(".popup-profile__form");
 
@@ -100,27 +88,33 @@ popupFormProfile.addEventListener('submit', submitEditProfileForm);
 const standartPlaces = [
     {
         name: 'Камчатка',
-        link: 'https://images.unsplash.com/photo-1605653799416-595e2b020d08?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2067&q=80'
+        link: 'https://images.unsplash.com/photo-1605653799416-595e2b020d08?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2067&q=80',
+        alt: 'Камчатка'
     },
     {
         name: 'Кавказ',
-        link: 'https://images.unsplash.com/photo-1658648000143-c1b6c814221b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2002&q=80'
+        link: 'https://images.unsplash.com/photo-1658648000143-c1b6c814221b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2002&q=80',
+        alt: 'Кавказ'
     },
     {
         name: 'Урал',
-        link: 'https://images.unsplash.com/photo-1604250016566-75da99e8c4af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1474&q=80'
+        link: 'https://images.unsplash.com/photo-1604250016566-75da99e8c4af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1474&q=80',
+        alt: 'Урал'
     },
     {
         name: 'Байкал',
-        link: 'https://images.unsplash.com/photo-1617835594990-7cd5a9b5d153?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+        link: 'https://images.unsplash.com/photo-1617835594990-7cd5a9b5d153?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+        alt: 'Байкал'
     },
     {
         name: 'Алтай',
-        link: 'https://images.unsplash.com/photo-1634206813058-44ccf5b33e50?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1351&q=80'
+        link: 'https://images.unsplash.com/photo-1634206813058-44ccf5b33e50?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1351&q=80',
+        alt: 'Алтай'
     },
     {
         name: 'Карелия',
-        link: 'https://images.unsplash.com/photo-1630763741619-cc347d3cba55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+        link: 'https://images.unsplash.com/photo-1630763741619-cc347d3cba55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+        alt: 'Карелия'
     }
 ]
 
@@ -130,12 +124,13 @@ const popupPlacePhoto = popupExtendImage.querySelector('.popup__photo');
 const popupPlaceTitle = popupExtendImage.querySelector('.popup__place');
 
 //обработка карточки темплейта//
-function reateCard(item) {
+function createCard(item) {
     const placeElement = placeTemplate.querySelector('.element').cloneNode(true);
     const titulElement = placeElement.querySelector('.element__name');
     titulElement.textContent = item.name;
     const photoElement = placeElement.querySelector('.element__photo');
     photoElement.src = item.link;
+    photoElement.alt = item.name;
     const likeElement = placeElement.querySelector('.element__like');
     const trashElement = placeElement.querySelector('.element__trash');
 
@@ -163,7 +158,7 @@ function reateCard(item) {
 
 //создание карточек для всех элементов//
 standartPlaces.forEach(element => {
-    const standartPlace = reateCard(element);
+    const standartPlace = createCard(element);
     placeContainer.append(standartPlace);
 });
 
@@ -175,9 +170,10 @@ const popupPlaceInputLink = popupPlaceFormElement.querySelector('.popup__input_t
 //Добавление карточки//
 function addPlaceElement(evt) {
     evt.preventDefault();
-    const newPlace = reateCard({
+    const newPlace = createCard({
         name: popupPlaceInputName.value,
-        link: popupPlaceInputLink.value
+        link: popupPlaceInputLink.value,
+        alt: popupPlaceInputName.value
     })
     placeContainer.prepend(newPlace);
     closePopupElement(popupAddPlace);
