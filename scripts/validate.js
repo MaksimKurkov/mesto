@@ -3,7 +3,7 @@ const config = {
     inputSelector: '.popup__input',
     submitButton: '.popup__save',
     inactiveButtonClass: 'popup__save_inactive',
-    inputErrorClass: 'popup__input_type_error',
+    inputErrorClass: 'popup__input_invalid',
     errorClass: 'popup__error_active',    
 }
 
@@ -36,11 +36,13 @@ const setEventListeners = (formElement, { inputSelector, submitButton, ...rest }
     });
 }
 
-const checkValidityInput = (inputElement, { errorClass }) => {
+const checkValidityInput = (inputElement, { inputErrorClass, errorClass }) => {
     if (inputElement.validity.valid) {
         hideInputError(inputElement, errorClass);
+        disableInputError(inputElement, inputErrorClass);
     } else {
         showInputError(inputElement, errorClass);
+        enableInputError(inputElement, inputErrorClass);
     }
 }
 
@@ -56,6 +58,14 @@ const disableButtonSubmit = (button, { inactiveButtonClass }) => {
 const enableButtonSubmit = (button, { inactiveButtonClass }) => {
     button.classList.remove(inactiveButtonClass);
     button.disabled = false;
+}
+
+const enableInputError = (input, inputErrorClass) => {
+    input.classList.add(inputErrorClass);
+}
+
+const disableInputError = (input, inputErrorClass) => {
+    input.classList.remove(inputErrorClass);
 }
 
 const showInputError = (input, errorClass) => {
@@ -78,6 +88,7 @@ const resetError = (formElement) => {
     formElement.querySelectorAll(config.inputSelector).forEach((input) => {
         if (!input.validity.valid) {
             hideInputError(input, config.errorClass);
+            disableInputError(input, config.inputErrorClass);
         }        
     });
 }
