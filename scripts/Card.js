@@ -16,31 +16,36 @@ export class Card {
 
     generateCard() {
         this._element = this._getTemplate();
-        this._setEventListeners();
-    
-        this._element.querySelector('.element__photo').src = this._image;
-        this._element.querySelector('.element__photo').alt = this._alt;
+        this._likeButton = this._element.querySelector('.element__like');
+        this._cardImage = this._element.querySelector('.element__photo');
+        this._setEventListeners();   
+        this._cardImage.src = this._image;
+        this._cardImage.alt = this._alt;
         this._element.querySelector('.element__name').textContent = this._name;
     
         return this._element;
     }
 
-  
+    _getLike() {
+        this._likeButton.classList.toggle('element__like_active');
+    }
+
+    _removeCard() {
+        this._element.remove();
+        this._element = null;
+    }
+
+    _expandImage() {
+        popupImage.querySelector('.popup__photo').src = this._image;
+        popupImage.querySelector('.popup__photo').alt = this._alt;
+        popupImage.querySelector('.popup__place').textContent = this._name;
+        openPopupElement(popupImage);
+    }
+
 
     _setEventListeners() {
-        this._element.querySelector('.element__photo').addEventListener('click', () => {
-            popupImage.querySelector('.popup__photo').src = this._image;
-            popupImage.querySelector('.popup__photo').alt = this._alt;
-            popupImage.querySelector('.popup__place').textContent = this._name;
-            openPopupElement(popupImage);
-        });
-   
-        this._element.querySelector('.element__like').addEventListener('click', () => {
-            this._element.querySelector('.element__like').classList.toggle('element__like_active');
-        })
-
-        this._element.querySelector('.element__trash').addEventListener('click', () => {
-            this._element.remove();
-        })
+        this._likeButton.addEventListener('click', () => { this._getLike()});
+        this._element.querySelector('.element__trash').addEventListener('click', () => { this._removeCard()});
+        this._cardImage.addEventListener('click', () => { this._expandImage()});
     }
 }

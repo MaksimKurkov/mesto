@@ -84,13 +84,21 @@ popupFormProfile.addEventListener('submit', submitEditProfileForm);
 
 ///Карточки///
 const placeContainer = document.querySelector('.place-container');
-const TemplateSelector = document.querySelector(".element-template").content.querySelector(".element");
+const templateSelector = document.querySelector(".element-template").content.querySelector(".element");
+
+function generateCard(card){
+    const cardElement = card.generateCard();
+    placeContainer.prepend(cardElement);
+}
+
 
 standartPlaces.forEach((element) =>{
-    const card = new Card(element, TemplateSelector);
-    const cardElement = card.generateCard();
-    placeContainer.append(cardElement);
+    const card = new Card(element, templateSelector);
+    generateCard(card);
 })
+
+
+
 
 /////Добавление карточки из попапа /////
 const popupPlaceFormElement = document.querySelector(".popup-place__form");
@@ -100,13 +108,12 @@ const popupPlaceInputLink = popupPlaceFormElement.querySelector('.popup__input_t
 //Добавление карточки//
 function addPlaceElement(evt) {
     evt.preventDefault();
-    const newPlace = new Card({
+    const newCard = new Card({
         name: popupPlaceInputName.value,
         link: popupPlaceInputLink.value,
         alt: popupPlaceInputName.value
-    }, TemplateSelector);
-    const newCardElement = newPlace.generateCard();
-    placeContainer.prepend(newCardElement);
+    }, templateSelector);
+    generateCard(newCard);
     closePopupElement(popupAddPlace);
     evt.target.reset();
 }
