@@ -11,15 +11,15 @@ export class FormValidator {
     }
 
     _setEventListeners() {
-        this._disableButtonSubmit(this._submitButton);
+        this._disableButtonSubmit();
         this._formInputs.forEach(input => {
             input.addEventListener('input', () => {
                 this._checkValidityInput(input);
                 if (this._hasInvalidInput(this._formInputs)) {
-                    this._disableButtonSubmit(this._submitButton);
+                    this._disableButtonSubmit();
                 }
                 else {
-                    this._enableButtonSubmit(this._submitButton);
+                    this._enableButtonSubmit();
                 }
             });
         });
@@ -74,6 +74,6 @@ export class FormValidator {
     }
     
     resetButton() {    
-        this._disableButtonSubmit(this._buttonElement);
+        this._disableButtonSubmit();
     }
 }

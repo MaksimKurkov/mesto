@@ -28,18 +28,18 @@ import '../../pages/index.css';
 //Section и Card//
 
 const сreateCard = ({name, link}) => {
-    const card = new Card({name, link}, templateSelector, (name, link) => {popupImage.openPopup(name, link)});
+    const card = new Card({name, link}, templateSelector, (name, link) => {popupImage.open(name, link)});
     return card.generateCard();
 }
 
-const defaultCardList = new Section({
+const cardList = new Section({
     data: standartPlaces,
     renderer: (item) => {
         const cardElement = сreateCard(item);
-        defaultCardList.addItem(cardElement);
+        cardList.addItem(cardElement);
     }
     }, cardListSelector);
-defaultCardList.renderItems();
+cardList.renderItems();
 
 const popupImage = new PopupWithImage(popupImageSelector);
 popupImage.setEventListeners();
@@ -61,22 +61,22 @@ const editUserInfo = (data) => {
 const popupProfile = new PopupWithForm(popupProfileSelector, editUserInfo);
 popupProfile.setEventListeners();
 
-const EditProfile = () => {
+const editProfile = () => {
     validationformEditProfile.resetError();
     validationformEditProfile.resetButton();
     const {name, status} = userInfo.getUserInfo();
     popupProfileInputName.value = name;
     popupProfileInputStatus.value = status;
-    popupProfile.openPopup();
+    popupProfile.open();
 }
 
-popupOpenButtonProfile.addEventListener('click', EditProfile);
+popupOpenButtonProfile.addEventListener('click', editProfile);
 
 ///Новая карточка///
 const addNewCard = (data) => {
     const newCardElement = сreateCard({name: data.placeInput,
             link: data.linkInput});
-    defaultCardList.addItem(newCardElement);
+    cardList.addItem(newCardElement);
 }
 
 const popupNewCard = new PopupWithForm(popupPlaceSelector, addNewCard);
@@ -85,9 +85,7 @@ popupNewCard.setEventListeners();
 const addCard = () => {
     validationformAddPlace.resetError();
     validationformAddPlace.resetButton();
-    popupPlaceInputName.value = null;
-    popupPlaceInputLink.value = null;
-    popupNewCard.openPopup();
+    popupNewCard.open();
 }
 
 popupOpenButtonPlace.addEventListener('click', addCard)

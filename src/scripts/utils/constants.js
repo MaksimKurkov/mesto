@@ -69,5 +69,5 @@ export const validationConfig = {
 
 ///Константы карточек////
 export const cardListSelector = '.place-container';
-export const templateSelector = document.querySelector(".element-template").content.querySelector(".element");
+export const templateSelector = '.element-template';
 export const popupImageSelector = '.popup-image';
