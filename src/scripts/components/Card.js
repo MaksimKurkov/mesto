@@ -1,12 +1,9 @@
-import {openPopupElement} from "./utils.js";
-import {popupImage} from "./utils.js";
-
 export class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, handleCardClick) {
         this._name = data.name;
         this._image = data.link;
-        this._alt = data.alt;
         this._templateSelector = templateSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -17,12 +14,12 @@ export class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._likeButton = this._element.querySelector('.element__like');
-        this._cardImage = this._element.querySelector('.element__photo');
-        this._setEventListeners();   
+        this._cardImage = this._element.querySelector('.element__photo');       
         this._cardImage.src = this._image;
-        this._cardImage.alt = this._alt;
+        this._cardImage.alt = this._name;
         this._element.querySelector('.element__name').textContent = this._name;
-    
+        
+        this._setEventListeners();
         return this._element;
     }
 
@@ -36,10 +33,7 @@ export class Card {
     }
 
     _expandImage() {
-        popupImage.querySelector('.popup__photo').src = this._image;
-        popupImage.querySelector('.popup__photo').alt = this._alt;
-        popupImage.querySelector('.popup__place').textContent = this._name;
-        openPopupElement(popupImage);
+        this._handleCardClick(this._name, this._image);
     }
 
 
