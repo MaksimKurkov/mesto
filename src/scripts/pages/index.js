@@ -10,8 +10,7 @@ import {standartPlaces,
         popupPlaceSelector,
         popupOpenButtonPlace,
         popupFormPlace,
-        popupPlaceInputName,
-        popupPlaceInputLink,
+        popupFormAvatar,
         cardListSelector,
         templateSelector,
         popupImageSelector
@@ -47,9 +46,11 @@ popupImage.setEventListeners();
 ///Валидация форм///
 const validationformEditProfile = new FormValidator(validationConfig, popupFormProfile);
 const validationformAddPlace = new FormValidator(validationConfig, popupFormPlace);
+const validationformEditAvatar = new FormValidator(validationConfig, popupFormAvatar);
 
 validationformEditProfile.enableValidation();
 validationformAddPlace.enableValidation();
+validationformEditAvatar.enableValidation();
 
 ///Данные профиля///
 const userInfo = new UserInfo(userNameSelector, userStatusSelector);
@@ -90,3 +91,26 @@ const addCard = () => {
 
 popupOpenButtonPlace.addEventListener('click', addCard)
 
+//Аватарка
+const popupAvatarSelector = '.popup-avatar';
+const popupOpenButtonAvatar = document.querySelector(".profile__avatar");
+const avatarStyles = window.getComputedStyle(popupOpenButtonAvatar);
+const avatarUrl = avatarStyles.backgroundImage.slice(5, -2);
+const popupAvatar = new PopupWithForm(popupAvatarSelector, );
+const popupAvatarInput = document.querySelector(".popup__input_type_avatar");
+popupAvatar.setEventListeners();
+
+const editAvatar = () => {
+    validationformEditAvatar.resetError();
+    validationformEditAvatar.resetButton();
+    popupAvatarInput.value = avatarUrl;
+    popupAvatar.open();
+}
+
+const addAvatar = () => {
+
+}
+
+
+
+popupOpenButtonAvatar.addEventListener('click', editAvatar)

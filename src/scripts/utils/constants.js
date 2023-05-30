@@ -57,6 +57,9 @@ export const popupFormPlace = document.querySelector(".popup-place__form");
 export const popupPlaceInputName = popupFormPlace.querySelector('.popup__input_type_place');
 export const popupPlaceInputLink = popupFormPlace.querySelector('.popup__input_type_link');
 
+///Константы попапа аватара////
+export const popupFormAvatar = document.querySelector(".popup-avatar__form");
+
 ///Константы валидации////
 export const validationConfig = {
     formSelector: '.popup__form',
