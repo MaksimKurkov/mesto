@@ -7,4 +7,5 @@
     background-color: #000000;
     color: #ffffff;
     display: block;
+    object-fit: cover;
 }

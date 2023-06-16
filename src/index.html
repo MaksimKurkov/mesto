@@ -13,12 +13,14 @@
         <!-- Профиль -->
         <section class="profile">
             <div class="profile__persona">
-                <div class="profile__avatar"></div>
+                <a href="#" class="profile__avatar-edit">
+                    <img src="#" alt="фотография пользователя" class="profile__avatar">
+                </a>
                 <div class="profile__info">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <h1 class="profile__name"></h1>
                     <button class="profile__edit-button" type="button">
                     </button>
-                    <p class="profile__status">Исследователь океана</p>
+                    <p class="profile__status"></p>
                 </div>
             </div>
             <button class="profile__add-button" type="button">
@@ -62,17 +64,19 @@
     <!-- Блок Popup картинка-->
     <div class="popup popup-image">
         <div class="popup__container popup__container_image">
+            <button class="popup__exit popup__exit_image popup-image__exit" type="button"></button>
             <img class="popup__photo" alt="Увеличенное изображение">
             <h2 class="popup__place"></h2>
-            <button class="popup__exit popup-image__exit" type="button"></button>
         </div>
     </div>
     <!-- Блок Popup удаление-->
     <div class="popup popup-delete">
         <div class="popup__container popup__container_delete">
-            <h2 class="popup__titul">Вы уверены?</h2>
-            <button class="popup__save" type="submit">Да</button>
-            <button class="popup__exit popup-image__exit" type="button"></button>
+            <form class="popup__form popup__form_delete popup-delete__form" name="popupDeleteForm">
+                <h2 class="popup__titul popup__titul_delete">Вы уверены?</h2>
+                <button class="popup__save" type="submit">Да</button>
+                <button class="popup__exit popup-image__exit" type="button"></button>
+            </form>         
         </div>
     </div>
     <!-- Блок Popup Аватар-->
@@ -94,7 +98,7 @@
                 <h2 class="element__name"></h2>
                 <div class="element__like-container">
                     <button class="element__like" type="button"></button>
-                    <p class="element__like-numbers">1</p>
+                    <p class="element__like-numbers">0</p>
                 </div>
             </div>
             <button class="element__trash" type="button"></button>

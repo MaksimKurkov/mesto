@@ -1,47 +1,7 @@
-const KamchatkaImage = new URL('https://images.unsplash.com/photo-1605653799416-595e2b020d08?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2067&q=80', import.meta.url);
-const KavkazImage = new URL('https://images.unsplash.com/photo-1658648000143-c1b6c814221b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2002&q=80', import.meta.url);
-const UralImage = new URL('https://images.unsplash.com/photo-1604250016566-75da99e8c4af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1474&q=80', import.meta.url);
-const BaikalImage = new URL('https://images.unsplash.com/photo-1617835594990-7cd5a9b5d153?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', import.meta.url);
-const AltaiImage = new URL('https://images.unsplash.com/photo-1634206813058-44ccf5b33e50?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1351&q=80', import.meta.url);
-const Karelia = new URL('https://images.unsplash.com/photo-1630763741619-cc347d3cba55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', import.meta.url);
-
-export const standartPlaces = [
-    {
-        name: 'Камчатка',
-        link: KamchatkaImage,
-        alt: 'Камчатка'
-    },
-    {
-        name: 'Кавказ',
-        link: KavkazImage,
-        alt: 'Кавказ'
-    },
-    {
-        name: 'Урал',
-        link: UralImage,
-        alt: 'Урал'
-    },
-    {
-        name: 'Байкал',
-        link: BaikalImage,
-        alt: 'Байкал'
-    },
-    {
-        name: 'Алтай',
-        link: AltaiImage,
-        alt: 'Алтай'
-    },
-    {
-        name: 'Карелия',
-        link: Karelia,
-        alt: 'Карелия'
-    }
-]
-
-
 ///Константы профиля////
 export const userNameSelector = '.profile__name';
 export const userStatusSelector = '.profile__status';
+export const userAvatarSelector = '.profile__avatar';
 
 ///Константы попапа профиля////
 export const popupProfileSelector = '.popup-profile';
@@ -59,6 +19,10 @@ export const popupPlaceInputLink = popupFormPlace.querySelector('.popup__input_t
 
 ///Константы попапа аватара////
 export const popupFormAvatar = document.querySelector(".popup-avatar__form");
+export const popupAvatarSelector = '.popup-avatar';
+export const popupOpenButtonAvatar = document.querySelector(".profile__avatar-edit");
+export const avatarUrl = document.querySelector(".profile__avatar");
+export const popupAvatarInput = document.querySelector(".popup__input_type_avatar");
 
 ///Константы валидации////
 export const validationConfig = {
@@ -74,3 +38,4 @@ export const validationConfig = {
 export const cardListSelector = '.place-container';
 export const templateSelector = '.element-template';
 export const popupImageSelector = '.popup-image';
+export const popupDeleteSelector = '.popup-delete';
