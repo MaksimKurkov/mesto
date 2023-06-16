@@ -11,18 +11,17 @@ export class PopupWithSubmitForm extends Popup{
         this.func = func;
     }
 
-    open(card){
+    open(item){
         super.open();
-        this._card = card;
-        this._cardId = card._id;
+        this._item = item;
+        this._itemId = item._id;
     }
 
     setEventListeners(){
         super.setEventListeners();
         this._form.addEventListener('submit', (event) => {
             event.preventDefault();
-            this._handleDeleteConfirm({card: this._card, cardId: this._cardId});
-            this.close();
+            this._handleDeleteConfirm({item: this._item, itemId: this._itemId});
         });
     }
 }

@@ -13,6 +13,13 @@ export class UserInfo {
         return profileInfo;
     }
 
+    getUserAvatar() {
+        const avatarInfo = {
+            avatar: this._userAvatar.src
+        }
+        return avatarInfo;
+    }
+
     setUserInfo(data){
         this._userName.textContent = data.name;
         this._userStatus.textContent = data.about;

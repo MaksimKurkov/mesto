@@ -28,7 +28,6 @@ export class Card {
         this._cardImage.src = this._image;
         this._cardImage.alt = this._name;
         this._element.querySelector('.element__name').textContent = this._name;
-        this.counter  = 0;
         this._deleteButton = this._element.querySelector('.element__trash');
         this.isLiked();
         this.showDeleteButton();
