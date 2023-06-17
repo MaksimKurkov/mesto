@@ -174,7 +174,7 @@ function handleCardSubmit() {
     link: popupPlaceInputLink.value
   })
   .then((data) => {
-    cardList.addItem(createCard(data));
+    cardList.addNewItem(createCard(data));
     popupNewCard.close();
   })
   .catch((err) => {
